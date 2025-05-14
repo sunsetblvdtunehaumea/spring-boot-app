@@ -1,6 +1,0 @@
-com/example/demo/controller/HelloWorldController.class
-com/example/demo/DemoApplication.class
-com/example/demo/api/gen/HelloWorldControllerApi.class
-com/example/demo/model/gen/HelloResponse.class
-com/example/demo/model/gen/InfoResponse.class
-com/example/demo/api/gen/ApiUtil.class
