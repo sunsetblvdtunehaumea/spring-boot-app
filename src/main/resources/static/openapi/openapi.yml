@@ -9,6 +9,8 @@ servers:
 tags:
   - name: hello-world-controller
     description: Hello World Controller
+  - name: calculator-controller
+    description: Calculator Controller
 paths:
   /api/hello:
     get:
@@ -46,6 +48,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InfoResponse'
+  /api/calculator/add:
+    get:
+      tags:
+        - calculator-controller
+      summary: Add two numbers using SOAP service
+      description: Calls a SOAP web service to add two numbers
+      operationId: add
+      parameters:
+        - name: a
+          in: query
+          description: First number
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: b
+          in: query
+          description: Second number
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatorResponse'
+  /api/calculator/subtract:
+    get:
+      tags:
+        - calculator-controller
+      summary: Subtract two numbers using SOAP service
+      description: Calls a SOAP web service to subtract second number from first number
+      operationId: subtract
+      parameters:
+        - name: a
+          in: query
+          description: First number
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: b
+          in: query
+          description: Second number
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatorResponse'
 components:
   schemas:
     HelloResponse:
@@ -66,3 +126,24 @@ components:
         description:
           type: string
           example: "Spring Boot application with OpenAPI documentation"
+    CalculatorResponse:
+      type: object
+      properties:
+        operation:
+          type: string
+          example: "add"
+        a:
+          type: integer
+          format: int32
+          example: 10
+        b:
+          type: integer
+          format: int32
+          example: 5
+        result:
+          type: integer
+          format: int32
+          example: 15
+        requestId:
+          type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"

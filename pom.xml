@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-app</name>
+    <n>spring-boot-app</n>
     <description>Spring Boot Demo with OpenAPI and Java 21</description>
     
     <properties>
@@ -20,6 +20,7 @@
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
         <swagger-annotations.version>2.2.20</swagger-annotations.version>
         <jakarta-validation-api.version>3.0.2</jakarta-validation-api.version>
+        <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
     </properties>
     
     <dependencies>
@@ -27,6 +28,24 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <!-- Spring Boot Web Services -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        
+        <!-- JAXB API for XML binding -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        
+        <!-- JAXB Runtime for XML processing -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
         </dependency>
         
         <dependency>
@@ -58,6 +77,13 @@
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>${jakarta-validation-api.version}</version>
+        </dependency>
+        
+        <!-- Logging Dependencies -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
         </dependency>
         
         <!-- Developer Tools -->
@@ -166,6 +192,29 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            
+            <!-- JAXB2 Maven Plugin for generating Java classes from WSDL -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>
+                        <source>${project.basedir}/src/main/resources/wsdl/calculator.wsdl</source>
+                    </sources>
+                    <packageName>com.example.demo.soap.gen</packageName>
+                    <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+                    <clearOutputDir>false</clearOutputDir>
+                </configuration>
             </plugin>
         </plugins>
     </build>
