@@ -1,0 +1,27 @@
+# OpenShift Projects Configuration
+# Format: app_name|environment|full_url
+# Lines starting with # are comments
+
+app1|QA01|http://openshift.cluster1.com/k8/22712
+app2|DEV|http://openshift.cluster2.com/k8/33821
+app3|PROD|http://openshift.cluster1.com/k8/44932
+api-service|STAGING|http://openshift.cluster3.com/k8/55143
+frontend|QA02|http://openshift.cluster2.com/k8/66254
+database|PROD|http://openshift.cluster3.com/k8/77365
+auth-service|DEV|http://openshift.cluster1.com/k8/88477
+notification|QA01|http://openshift.cluster2.com/k8/99588
+
+# Development Environment Projects
+user-api|DEV|https://console-openshift-console.apps.dev.cluster1.com/k8s/ns/team-user-api-dev
+order-service|DEV|https://console-openshift-console.apps.dev.cluster1.com/k8s/ns/team-order-dev
+payment-gateway|DEV|https://console-openshift-console.apps.dev.cluster1.com/k8s/ns/team-payment-dev
+
+# QA Environment Projects
+user-api|QA01|https://console-openshift-console.apps.qa.cluster2.com/k8s/ns/team-user-api-qa
+order-service|QA01|https://console-openshift-console.apps.qa.cluster2.com/k8s/ns/team-order-qa
+payment-gateway|QA02|https://console-openshift-console.apps.qa.cluster2.com/k8s/ns/team-payment-qa
+
+# Production Environment Projects
+user-api|PROD|https://console-openshift-console.apps.prod.cluster3.com/k8s/ns/team-user-api-prod
+order-service|PROD|https://console-openshift-console.apps.prod.cluster3.com/k8s/ns/team-order-prod
+payment-gateway|PROD|https://console-openshift-console.apps.prod.cluster3.com/k8s/ns/team-payment-prod
